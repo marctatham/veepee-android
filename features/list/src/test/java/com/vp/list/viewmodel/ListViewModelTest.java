@@ -10,6 +10,7 @@ import org.junit.Rule;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.util.Collections;
 
 import retrofit2.mock.Calls;
 
@@ -52,6 +53,24 @@ public class ListViewModelTest {
 
         //then
         verify(mockObserver).onChanged(SearchResult.inProgress());
+    }
+
+
+    @Test
+    public void shouldReturnSuccessState() {
+        //given
+        SearchResponse searchResponse = mock(SearchResponse.class);
+        when(searchResponse.getSearch()).thenReturn(Collections.emptyList());
+        when(searchResponse.getTotalResults()).thenReturn(0);
+        SearchService searchService = mock(SearchService.class);
+        when(searchService.search(anyString(), anyInt())).thenReturn(Calls.response(searchResponse));
+        ListViewModel listViewModel = new ListViewModel(searchService);
+
+        //when
+        listViewModel.searchMoviesByTitle("title", 1);
+
+        //then
+        assertThat(listViewModel.observeMovies().getValue().getListState()).isEqualTo(ListState.LOADED);
     }
 
 }
