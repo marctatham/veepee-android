@@ -164,6 +164,25 @@ public class ListFragment extends Fragment implements GridPagingScrollListener.L
 
     @Override
     public void onItemClick(String imdbID) {
-        //TODO handle click events
+        // this module intentionally contains no dependency on the "Detail" feature-module
+        // therefore, we instead rely on the Implicit resolution of any activity that can
+        // handle the intent to VIEW this URI, as is defined in the  Detail feature-module's
+        // AndroidManifest file
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        Uri destinationUri = Uri.parse("app://movies/detail/?imdbID=" + imdbID);
+        intent.setData(destinationUri);
+
+        // Check if there are activities that can handle the intent
+        // in the case that there are no activities that can handle the intent,
+        // this equates to an illegal state and should throw a Runtime Error
+        // in this way we make it more obvious that there is a problem and prevent
+        // shipping with an easily preventable issue
+        if (intent.resolveActivity(requireContext().getPackageManager()) != null) {
+            startActivity(intent);
+        } else {
+            // if this happens, it means that the Detail feature-module's activity (or activity
+            // definition within the AndroidManifest) has changed in someway that breaks compatibility
+            throw new IllegalStateException("No activity exists that can handle the intent to VIEW movie detail");
+        }
     }
 }
