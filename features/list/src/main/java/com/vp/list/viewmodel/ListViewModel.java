@@ -59,4 +59,25 @@ public class ListViewModel extends ViewModel {
             }
         });
     }
+
+    public void refreshSearch() {
+        aggregatedItems.clear();
+        searchService.search(currentTitle, 1).enqueue(new Callback<SearchResponse>() {
+
+            @Override
+            public void onResponse(@NonNull Call<SearchResponse> call, @NonNull Response<SearchResponse> response) {
+                SearchResponse result = response.body();
+                if (result != null) {
+                    aggregatedItems.addAll(result.getSearch());
+                    liveData.setValue(SearchResult.success(aggregatedItems, result.getTotalResults()));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<SearchResponse> call, @NonNull Throwable t) {
+                liveData.setValue(SearchResult.error());
+            }
+        });
+
+    }
 }
