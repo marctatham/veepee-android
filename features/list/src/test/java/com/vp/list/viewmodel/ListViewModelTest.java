@@ -73,4 +73,22 @@ public class ListViewModelTest {
         assertThat(listViewModel.observeMovies().getValue().getListState()).isEqualTo(ListState.LOADED);
     }
 
+
+    @Test
+    public void shouldReturnSuccessStateForDataRefresh() {
+        //given
+        SearchResponse searchResponse = mock(SearchResponse.class);
+        when(searchResponse.getSearch()).thenReturn(Collections.emptyList());
+        when(searchResponse.getTotalResults()).thenReturn(0);
+        SearchService searchService = mock(SearchService.class);
+        when(searchService.search(anyString(), anyInt())).thenReturn(Calls.response(searchResponse));
+        ListViewModel listViewModel = new ListViewModel(searchService);
+
+        //when
+        listViewModel.refreshSearch();
+
+        //then
+        assertThat(listViewModel.observeMovies().getValue().getListState()).isEqualTo(ListState.LOADED);
+    }
+
 }
