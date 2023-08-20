@@ -1,6 +1,5 @@
 package com.vp.favorites
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +9,7 @@ import com.bumptech.glide.Glide
 import com.vp.data.favorites.Favorite
 
 class FavoritesAdapter(
-    private val context: Context,
     private val onItemClickListener: (Favorite) -> Unit
-
 ) : RecyclerView.Adapter<FavoritesAdapter.ViewHolder>() {
 
     var favorites: List<Favorite> = emptyList()
@@ -22,13 +19,13 @@ class FavoritesAdapter(
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.item_list, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_list, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val favorite: Favorite = favorites[position]
-        Glide.with(context)
+        Glide.with(holder.imageView.context)
             .load(favorite.posterUrl)
             .centerCrop()
             .placeholder(android.R.drawable.ic_delete) // TODO: Add a placeholder image
