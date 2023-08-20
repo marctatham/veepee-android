@@ -11,18 +11,18 @@ Please note that branches have NOT been deleted in case you would like to check 
 to facilitate your review process. 
 
 # Challenges
-1. The Wrong State - https://github.com/marctatham/veepee-android/pull/1
-2. The Lost Event - https://github.com/marctatham/veepee-android/pull/2
-3. The Lost State - https://github.com/marctatham/veepee-android/pull/3
-4. Some refreshments - https://github.com/marctatham/veepee-android/pull/4
-5. The chosen ones - [Part 1](https://github.com/marctatham/veepee-android/pull/5) & [Part 2](https://github.com/marctatham/veepee-android/pull/6) 
-6. The Shrink - https://github.com/marctatham/veepee-android/pull/7 
+1. The Wrong State - PR https://github.com/marctatham/veepee-android/pull/1
+2. The Lost Event - PR https://github.com/marctatham/veepee-android/pull/2
+3. The Lost State - PR https://github.com/marctatham/veepee-android/pull/3
+4. Some refreshments - PR https://github.com/marctatham/veepee-android/pull/4
+5. The chosen ones - PR [Part 1](https://github.com/marctatham/veepee-android/pull/5) & [Part 2](https://github.com/marctatham/veepee-android/pull/6) 
+6. The Shrink - PR https://github.com/marctatham/veepee-android/pull/7 
 
 ### Bonus:
 You cracked all of those challenges, and you still can't get enough. We've got you covered, we have some bonus challenges, if you want some extra points, or you can just ignore them and go grab a coffee.
 
-1. Memory leaks - [Part 1](https://github.com/marctatham/veepee-android/pull/8) and [Part 2](https://github.com/marctatham/veepee-android/pull/9)
-2. Java to Kotlin conversion - https://github.com/marctatham/veepee-android/pull/10
+1. Memory leaks - PR [Part 1](https://github.com/marctatham/veepee-android/pull/8) and [Part 2](https://github.com/marctatham/veepee-android/pull/9)
+2. Java to Kotlin conversion - PR https://github.com/marctatham/veepee-android/pull/10
 3. List loading indicator - this one I haven't had time to look into yet unfortunately
 
 Feedback is always appreciated. 
