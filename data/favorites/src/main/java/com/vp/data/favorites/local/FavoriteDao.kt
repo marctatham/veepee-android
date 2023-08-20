@@ -5,7 +5,6 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.vp.data.favorites.local.model.FavoriteDataModel
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface FavoriteDao {
@@ -20,7 +19,7 @@ interface FavoriteDao {
      * Observes a single favorite.
      */
     @Query("SELECT * FROM favorite WHERE id = :id")
-    fun observeById(id: String): Flow<FavoriteDataModel>
+    fun observeById(id: String): LiveData<FavoriteDataModel>
 
     /**
      * Insert a favorite in the database. If a favorite already exists, replace it.
