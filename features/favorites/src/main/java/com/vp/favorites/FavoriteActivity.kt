@@ -29,7 +29,7 @@ class FavoriteActivity : DaggerAppCompatActivity() {
         // setup simple recyclerview
         setContentView(R.layout.activity_favorite)
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        val adapter = FavoritesAdapter(this) { favorite ->
+        val adapter = FavoritesAdapter { favorite ->
             val intent = Intent(Intent.ACTION_VIEW).apply {
                 data = Uri.parse("app://movies/detail/?imdbID=${favorite.id}")
             }
