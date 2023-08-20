@@ -4,6 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
 import com.vp.data.favorites.local.FavoriteDao
 import com.vp.data.favorites.local.mapper.FavoriteDataModelMapper
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -15,21 +19,28 @@ class DefaultFavoriteRepository @Inject constructor(
     private val mapper: FavoriteDataModelMapper
 ) : FavoriteRepository {
 
+    // TODO: inject the dispatcher
+    private val repositoryScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+
     override fun observeAll(): LiveData<List<Favorite>> {
         return favoriteDao.observeAll().map { favorites ->
             favorites.map { mapper.mapTo(it) }
         }
     }
 
-    override fun observeById(id: String): LiveData<Favorite> {
-        return favoriteDao.observeById(id).map { mapper.mapTo(it) }
+    override fun observeById(id: String): LiveData<Favorite?> {
+        return favoriteDao.observeById(id).map { it?.let { mapper.mapTo(it) } }
     }
 
-    override suspend fun addFavorite(favorite: Favorite) {
-        favoriteDao.addFavorite(mapper.mapFrom(favorite))
+    override fun addFavorite(favorite: Favorite) {
+        repositoryScope.launch {
+            favoriteDao.addFavorite(mapper.mapFrom(favorite))
+        }
     }
 
-    override suspend fun delete(favorite: Favorite): Int {
-        return favoriteDao.deleteById(favorite.id)
+    override fun deleteFavorite(id: String) {
+        repositoryScope.launch {
+            favoriteDao.deleteById(id)
+        }
     }
 }
