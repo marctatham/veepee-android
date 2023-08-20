@@ -59,7 +59,7 @@ class ListFragment : Fragment(), LoadMoreItemsListener, ListAdapter.OnItemClickL
         viewAnimator = view.findViewById(R.id.viewAnimator)
         progressBar = view.findViewById(R.id.progressBar)
         errorTextView = view.findViewById(R.id.errorText)
-        savedInstanceState?.getString(CURRENT_QUERY).let {
+        savedInstanceState?.getString(CURRENT_QUERY)?.let {
             currentQuery = it.toString()
         }
 
