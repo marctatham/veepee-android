@@ -32,6 +32,7 @@ android {
 
 dependencies {
 
+    // TODO: tidy up versions, ensure we rely on the root project for these
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation "androidx.appcompat:appcompat:$rootProject.supportLibraryVersion"
 
