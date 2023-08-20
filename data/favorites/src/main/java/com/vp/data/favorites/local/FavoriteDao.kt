@@ -19,7 +19,7 @@ interface FavoriteDao {
      * Observes a single favorite.
      */
     @Query("SELECT * FROM favorite WHERE id = :id")
-    fun observeById(id: String): LiveData<FavoriteDataModel>
+    fun observeById(id: String): LiveData<FavoriteDataModel?>
 
     /**
      * Insert a favorite in the database. If a favorite already exists, replace it.
