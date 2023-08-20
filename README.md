@@ -25,7 +25,7 @@ You cracked all of those challenges, and you still can't get enough. We've got y
 2. Java to Kotlin conversion - PR https://github.com/marctatham/veepee-android/pull/10
 3. List loading indicator - this one I haven't had time to look into yet unfortunately
 
-Feedback is always appreciated. 
+# Feedback is always appreciated. 
 Even in the event another candidate is selected for this role, please take the time to provide your constructive criticism 
 in the form of comments on the PR (even if they are merged).
 
