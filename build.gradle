@@ -20,7 +20,7 @@ buildscript {
         gson = '2.10.1'
         dagger = '2.44.2'
         glide = '4.10.0'
-        okhttp = '4.10.0'
+        okhttp = '4.11.0'
     }
 
     repositories {
