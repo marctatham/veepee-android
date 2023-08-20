@@ -35,7 +35,6 @@ android {
 }
 
 dependencies {
-    // TODO: tidy up dependencies, ensure we rely on the root project for these
     implementation "androidx.room:room-runtime:$rootProject.room"
     implementation "androidx.room:room-ktx:$rootProject.room"
     implementation "androidx.room:room-paging:$rootProject.room"
