@@ -16,11 +16,15 @@ buildscript {
         swipeRefreshLayout = '1.1.0'
         retrofit = '2.9.0'
         lifecycle = '2.2.0'
+        viewmodel = '2.5.1'
         room = '2.5.2'
         gson = '2.10.1'
         dagger = '2.44.2'
         glide = '4.10.0'
         okhttp = '4.11.0'
+
+        // test dependencies
+        mockk = "1.13.7"
     }
 
     repositories {
