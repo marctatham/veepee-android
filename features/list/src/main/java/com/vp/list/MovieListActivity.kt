@@ -11,8 +11,7 @@ class MovieListActivity : DaggerAppCompatActivity() {
 
     private var searchViewExpanded = true
     private var searchViewContent: String = ""
-
-    private lateinit var searchView: SearchView
+    private var searchView: SearchView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -34,31 +33,33 @@ class MovieListActivity : DaggerAppCompatActivity() {
         inflater.inflate(R.menu.options_menu, menu)
         val menuItem = menu.findItem(R.id.search)
         searchView = menuItem.actionView as SearchView
-        searchView.imeOptions = EditorInfo.IME_FLAG_NO_EXTRACT_UI
-        searchView.isIconified = searchViewExpanded
-        searchView.setQuery(searchViewContent, false)
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                supportFragmentManager.findFragmentByTag(ListFragment.TAG).let {
-                    if (it is ListFragment) {
-                        it.submitSearchQuery(query)
+        searchView?.let {
+            it.imeOptions = EditorInfo.IME_FLAG_NO_EXTRACT_UI
+            it.isIconified = searchViewExpanded
+            it.setQuery(searchViewContent, false)
+            it.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    supportFragmentManager.findFragmentByTag(ListFragment.TAG).let {
+                        if (it is ListFragment) {
+                            it.submitSearchQuery(query)
+                        }
                     }
+
+                    return true
                 }
 
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String): Boolean = false
-        })
+                override fun onQueryTextChange(newText: String): Boolean = false
+            })
+        }
 
         return true
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.apply {
-            putBoolean(IS_SEARCH_VIEW_ICONIFIED, searchView.isIconified)
-            putString(QUERY_STRING, searchView.query.toString())
+        searchView?.apply {
+            outState.putBoolean(IS_SEARCH_VIEW_ICONIFIED, isIconified)
+            outState.putString(QUERY_STRING, query.toString())
         }
     }
 
