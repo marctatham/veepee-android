@@ -89,8 +89,12 @@ class ListFragment : Fragment(), LoadMoreItemsListener, ListAdapter.OnItemClickL
     }
 
     private fun initList() {
-        listAdapter = ListAdapter()
-        listAdapter.setOnItemClickListener(this)
+        listAdapter = ListAdapter {
+            val intent = Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse("app://movies/detail/?imdbID=$it")
+            }
+            startActivity(intent)
+        }
         recyclerView.adapter = listAdapter
         recyclerView.setHasFixedSize(true)
         val layoutManager = GridLayoutManager(
@@ -140,7 +144,7 @@ class ListFragment : Fragment(), LoadMoreItemsListener, ListAdapter.OnItemClickL
     }
 
     private fun setItemsData(listAdapter: ListAdapter, searchResult: SearchResult) {
-        listAdapter.setItems(searchResult.items)
+        listAdapter.listItems = searchResult.items
         if (searchResult.totalResult <= listAdapter.itemCount) {
             gridPagingScrollListener.markLastPage(true)
         }

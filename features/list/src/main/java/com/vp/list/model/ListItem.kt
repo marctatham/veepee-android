@@ -4,14 +4,14 @@ import com.google.gson.annotations.SerializedName
 
 data class ListItem(
     @SerializedName("Title")
-    val title: String? = null,
+    val title: String,
 
     @SerializedName("Year")
-    val year: String? = null,
+    val year: String,
 
     @SerializedName("imdbID")
-    val imdbID: String? = null,
+    val imdbID: String,
 
     @SerializedName("Poster")
-    val poster: String? = null
+    val poster: String
 )
