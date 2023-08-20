@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey
 @Entity(
     tableName = "favorite"
 )
-data class Favorite(
+data class FavoriteDataModel(
     @PrimaryKey val id: String,
     var title: String,
     var posterUrl: String,
