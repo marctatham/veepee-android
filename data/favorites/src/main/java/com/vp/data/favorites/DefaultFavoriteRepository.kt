@@ -5,7 +5,6 @@ import androidx.lifecycle.map
 import com.vp.data.favorites.local.FavoriteDao
 import com.vp.data.favorites.local.mapper.FavoriteDataModelMapper
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,8 +18,7 @@ class DefaultFavoriteRepository @Inject constructor(
     private val mapper: FavoriteDataModelMapper
 ) : FavoriteRepository {
 
-    // TODO: inject the dispatcher
-    private val repositoryScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+    private val repositoryScope = CoroutineScope(SupervisorJob())
 
     override fun observeAll(): LiveData<List<Favorite>> {
         return favoriteDao.observeAll().map { favorites ->

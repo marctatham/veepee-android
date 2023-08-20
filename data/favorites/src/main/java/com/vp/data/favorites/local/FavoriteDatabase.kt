@@ -7,8 +7,7 @@ import com.vp.data.favorites.local.model.FavoriteDataModel
 /**
  * The Room Database that contains the Favorite table.
  */
-// TODO: exportSchema should be updated to true when the implementation is ready
-@Database(entities = [FavoriteDataModel::class], version = 1, exportSchema = false)
+@Database(entities = [FavoriteDataModel::class], version = 1, exportSchema = true)
 abstract class FavoriteDatabase : RoomDatabase() {
 
     abstract fun favoriteDao(): FavoriteDao
