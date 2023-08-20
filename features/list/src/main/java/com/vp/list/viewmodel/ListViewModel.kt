@@ -24,7 +24,7 @@ class ListViewModel @Inject internal constructor(
         if (page == 1 && title != currentTitle) {
             aggregatedItems.clear()
             currentTitle = title
-            liveData.value = SearchResult.inProgress()
+            liveData.value = SearchResult.InProgress
         }
 
         initiateSearchAsync(page)
@@ -40,9 +40,9 @@ class ListViewModel @Inject internal constructor(
             try {
                 val response: SearchResponse = searchService.search(currentTitle, page)
                 aggregatedItems.addAll(response.search)
-                liveData.value = SearchResult.success(aggregatedItems, response.totalResults)
+                liveData.value = SearchResult.Success(aggregatedItems, response.totalResults)
             } catch (e: Exception) {
-                liveData.value = SearchResult.error()
+                liveData.value = SearchResult.Error
             }
         }
     }

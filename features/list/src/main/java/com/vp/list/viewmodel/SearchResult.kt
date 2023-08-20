@@ -2,23 +2,15 @@ package com.vp.list.viewmodel
 
 import com.vp.list.model.ListItem
 
-data class SearchResult private constructor(
+sealed class SearchResult(
     val items: List<ListItem>,
-    val totalResult: Int,
-    val listState: ListState
+    val totalResult: Int
 ) {
 
-    companion object {
-        fun error(): SearchResult {
-            return SearchResult(emptyList(), 0, ListState.ERROR)
-        }
+    object Error : SearchResult(emptyList(), 0)
 
-        fun success(items: List<ListItem>, totalResult: Int): SearchResult {
-            return SearchResult(items, totalResult, ListState.LOADED)
-        }
+    data class Success(val listItems: List<ListItem>, val total: Int) : SearchResult(listItems, total)
 
-        fun inProgress(): SearchResult {
-            return SearchResult(emptyList(), 0, ListState.IN_PROGRESS)
-        }
-    }
+    object InProgress : SearchResult(emptyList(), 0)
+
 }

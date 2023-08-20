@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.vp.list.GridPagingScrollListener.LoadMoreItemsListener
-import com.vp.list.viewmodel.ListState
 import com.vp.list.viewmodel.ListViewModel
 import com.vp.list.viewmodel.SearchResult
 import dagger.android.support.AndroidSupportInjection
@@ -60,7 +59,7 @@ class ListFragment : Fragment(), LoadMoreItemsListener, ListAdapter.OnItemClickL
         progressBar = view.findViewById(R.id.progressBar)
         errorTextView = view.findViewById(R.id.errorText)
         savedInstanceState?.getString(CURRENT_QUERY)?.let {
-            currentQuery = it.toString()
+            currentQuery = it
         }
 
         initBottomNavigation(view)
@@ -125,18 +124,12 @@ class ListFragment : Fragment(), LoadMoreItemsListener, ListAdapter.OnItemClickL
     }
 
     private fun handleResult(listAdapter: ListAdapter, searchResult: SearchResult) {
-        when (searchResult.listState) {
-            ListState.LOADED -> {
+        when (searchResult) {
+            SearchResult.Error -> showError()
+            SearchResult.InProgress -> showProgressBar()
+            is SearchResult.Success -> {
                 setItemsData(listAdapter, searchResult)
                 showList()
-            }
-
-            ListState.IN_PROGRESS -> {
-                showProgressBar()
-            }
-
-            else -> {
-                showError()
             }
         }
         gridPagingScrollListener.markLoading(false)
