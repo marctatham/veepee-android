@@ -50,6 +50,7 @@ dependencies {
     implementation "androidx.appcompat:appcompat:$rootProject.supportLibraryVersion"
     implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerView"
     implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayout"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$rootProject.swipeRefreshLayout"
     implementation "com.google.android.material:material:$rootProject.supportLibraryVersion"
 
     //api
