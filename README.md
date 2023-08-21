@@ -23,7 +23,7 @@ You cracked all of those challenges, and you still can't get enough. We've got y
 
 1. Memory leaks - PR [Part 1](https://github.com/marctatham/veepee-android/pull/8) and [Part 2](https://github.com/marctatham/veepee-android/pull/9)
 2. Java to Kotlin conversion - PR https://github.com/marctatham/veepee-android/pull/10
-3. List loading indicator - this one I haven't had time to look into yet unfortunately
+3. List loading indicator - PR https://github.com/marctatham/veepee-android/pull/12
 
 # Feedback is always appreciated. 
 Even in the event another candidate is selected for this role, please take the time to provide your constructive criticism 
