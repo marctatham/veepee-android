@@ -10,6 +10,8 @@ Below are the state of each of the challenges for your review in the form of a P
 Please note that branches have NOT been deleted in case you would like to check a particular branch out 
 to facilitate your review process. 
 
+Don't forget to add your apiKey to your local.properties before attempting to build the project locally!
+
 # Challenges
 1. The Wrong State - PR https://github.com/marctatham/veepee-android/pull/1
 2. The Lost Event - PR https://github.com/marctatham/veepee-android/pull/2
