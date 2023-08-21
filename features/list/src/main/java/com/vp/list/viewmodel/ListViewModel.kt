@@ -25,9 +25,9 @@ class ListViewModel @Inject internal constructor(
         if (page == 1 && title != currentTitle) {
             aggregatedItems.clear()
             currentTitle = title
-            liveData.value = SearchResult.InProgress
         }
 
+        liveData.value = SearchResult.InProgress
         initiateSearchAsync(page)
     }
 
