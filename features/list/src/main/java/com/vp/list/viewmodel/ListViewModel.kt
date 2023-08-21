@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.vp.list.model.ListItem
 import com.vp.list.model.SearchResponse
 import com.vp.list.service.SearchService
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -40,8 +39,6 @@ class ListViewModel @Inject internal constructor(
         viewModelScope.launch {
             try {
                 val response: SearchResponse = searchService.search(currentTitle, page)
-                delay(3000)
-
                 aggregatedItems.addAll(response.search)
                 liveData.value = SearchResult.Success(aggregatedItems, response.totalResults)
             } catch (e: Exception) {
