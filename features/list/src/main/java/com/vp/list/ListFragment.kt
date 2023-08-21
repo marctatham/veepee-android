@@ -112,7 +112,11 @@ class ListFragment : Fragment(), LoadMoreItemsListener, ListAdapter.OnItemClickL
     }
 
     private fun showProgressBar() {
-        viewAnimator.displayedChild = viewAnimator.indexOfChild(progressBar)
+        progressBar.visibility = View.VISIBLE
+    }
+
+    private fun hideProgressBar() {
+        progressBar.visibility = View.GONE
     }
 
     private fun showList() {
@@ -125,11 +129,15 @@ class ListFragment : Fragment(), LoadMoreItemsListener, ListAdapter.OnItemClickL
 
     private fun handleResult(listAdapter: ListAdapter, searchResult: SearchResult) {
         when (searchResult) {
-            SearchResult.Error -> showError()
+            SearchResult.Error -> {
+                showError()
+                hideProgressBar()
+            }
             SearchResult.InProgress -> showProgressBar()
             is SearchResult.Success -> {
                 setItemsData(listAdapter, searchResult)
                 showList()
+                hideProgressBar()
             }
         }
         gridPagingScrollListener.markLoading(false)
